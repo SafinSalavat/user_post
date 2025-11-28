@@ -1,7 +1,9 @@
+import { Post } from 'src/post/entity/post.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -46,4 +48,7 @@ export class User {
     comment: 'Дата последнего обновления записи',
   })
   updatedAt: string;
+
+  @OneToMany(() => Post, (post) => post.author)
+  posts: Post[];
 }

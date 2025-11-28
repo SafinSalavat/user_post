@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppConfigModule } from 'src/config/config.module';
 import { AppConfigService } from 'src/config/config.service';
+import { Post } from 'src/post/entity/post.entity';
 import { User } from 'src/user/entity/user.entity';
 
 @Module({
@@ -20,7 +21,7 @@ import { User } from 'src/user/entity/user.entity';
           database: databaseConfig.POSTGRES_DB,
           autoLoadEntities: true,
           synchronize: true,
-          entities: [User],
+          entities: [User, Post],
         };
       },
     }),

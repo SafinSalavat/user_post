@@ -14,6 +14,14 @@ async function bootstrap() {
     .setTitle('API для сервиса статей')
     .setDescription('Документация API для работы со статьями')
     .setVersion('1.0.0')
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      name: 'Токен доступа',
+      description: 'Введите токен доступа',
+      in: 'header',
+    })
     .build();
 
   const document = SwaggerModule.createDocument(app, swaggerConfig);
@@ -34,7 +42,6 @@ async function bootstrap() {
       forbidUnknownValues: true,
     }),
   );
-  app.use(cookieParser());
 
   await app.listen(port);
 }

@@ -20,7 +20,7 @@ import { AuthController } from './auth.controller';
         const jwtConfig = config.jwtConfig;
         return {
           secret: jwtConfig.JWT_ACCESS_SECRET,
-          signOptions: { expiresIn: jwtConfig.JWT_ACCESS_EXPIRES_IN },
+          signOptions: { expiresIn: '1h' },
         };
       },
     }),

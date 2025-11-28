@@ -20,7 +20,7 @@ export class AuthService {
       { sub: id, email: email },
       {
         secret: jwtConfig.JWT_ACCESS_SECRET,
-        expiresIn: jwtConfig.JWT_ACCESS_EXPIRES_IN,
+        expiresIn: '1h',
       },
     );
 
@@ -28,7 +28,7 @@ export class AuthService {
       { sub: id, email: email },
       {
         secret: jwtConfig.JWT_REFRESH_SECRET,
-        expiresIn: jwtConfig.JWT_REFRESH_EXPIRES_IN,
+        expiresIn: '1d',
       },
     );
     return { accessToken, refreshToken };
