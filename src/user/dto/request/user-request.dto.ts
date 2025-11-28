@@ -80,7 +80,7 @@ export class UserUpdateRequestDto {
 
 export class ChangeUserPasswordRequestDto {
   @ApiProperty({
-    description: 'Пароль пользователя. Минимум 6 символов.',
+    description: 'Пароль пользователя',
     example: 'qwerty123',
   })
   @IsNotEmpty({ message: 'Поле password обязательно для заполнения' })

@@ -12,7 +12,7 @@ import {
 export class PostCreateRequestDto {
   @ApiProperty({
     description: 'Название статьи',
-    example: 'Как устроен NestJS',
+    example: 'Самое тестовое название статьи',
   })
   @IsNotEmpty({ message: 'Поле title обязательно для заполнения' })
   @IsString({ message: 'Поле title должно быть строкой' })
@@ -20,7 +20,7 @@ export class PostCreateRequestDto {
 
   @ApiProperty({
     description: 'Описание статьи',
-    example: 'Подробное объяснение модулей, контроллеров и сервисов',
+    example: 'Я бы описал тестовое описание, но не описал',
   })
   @IsNotEmpty({ message: 'Поле description обязательно для заполнения' })
   @IsString({ message: 'Поле description должно быть строкой' })
@@ -68,8 +68,7 @@ export class PostQueryFilterRequestDto {
   publishedAt?: string;
 
   @ApiPropertyOptional({
-    description:
-      'Фильтр по идентификатору автора. Должен быть целым числом. Пример: 1.',
+    description: 'Фильтр по идентификатору автора',
     example: 1,
   })
   @IsOptional()
@@ -80,7 +79,7 @@ export class PostQueryFilterRequestDto {
 
 export class PostUpdateRequestDto {
   @ApiPropertyOptional({
-    description: 'Новое название статьи. Должно быть строкой и не пустым.',
+    description: 'Новое название статьи',
     example: 'Новое название статьи',
   })
   @IsOptional()
@@ -89,8 +88,8 @@ export class PostUpdateRequestDto {
   title?: string;
 
   @ApiPropertyOptional({
-    description: 'Новое описание статьи. Должно быть строкой и не пустым.',
-    example: 'Новое подробное описание...',
+    description: 'Новое описание статьи',
+    example: 'Новое подробное описание',
   })
   @IsOptional()
   @IsNotEmpty({ message: 'Поле description не может быть пустым' })

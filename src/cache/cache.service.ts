@@ -27,14 +27,19 @@ export class CacheService implements OnModuleInit, OnModuleDestroy {
     this.redis.disconnect();
   }
 
-  async get<T>(key: string): Promise<T | null> {
+  async get<T>(key: string): Promise<T | undefined> {
     const data = await this.redis.get(key);
-    if (!data) return null;
+    if (!data) return undefined;
+    if (data === 'null') return null as T;
     return JSON.parse(data) as T;
   }
 
   async set<T>(key: string, value: T, ttlSeconds?: number): Promise<void> {
-    const data = JSON.stringify(value);
+    let data: string = JSON.stringify(value);
+    if (value === null) {
+      data = 'null';
+    }
+
     if (ttlSeconds) {
       await this.redis.set(key, data, 'EX', ttlSeconds);
     } else {

@@ -20,7 +20,7 @@ import { User } from 'src/user/entity/user.entity';
           password: databaseConfig.POSTGRES_PASSWORD,
           database: databaseConfig.POSTGRES_DB,
           autoLoadEntities: true,
-          synchronize: true,
+          synchronize: false,
           entities: [User, Post],
         };
       },

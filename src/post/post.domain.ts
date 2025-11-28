@@ -20,11 +20,16 @@ export class PostDomain {
   ) {}
 
   async findOne(id: number): Promise<Post | null> {
+    const cacheKey = `posts|id=${id}`;
+    const cached = await this.cacheService.get<Post | null>(cacheKey);
+    if (cached) return cached;
     const post = await this.postRepository
       .createQueryBuilder()
       .select()
       .where({ id })
       .getOne();
+
+    await this.cacheService.set(cacheKey, post);
 
     return post;
   }

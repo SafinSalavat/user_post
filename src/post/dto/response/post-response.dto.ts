@@ -10,13 +10,13 @@ export class GetOnePostResponse {
 
   @ApiProperty({
     description: 'Название статьи',
-    example: 'Как устроен NestJS',
+    example: 'Самое тестовое название статьи',
   })
   title: string;
 
   @ApiProperty({
     description: 'Описание статьи',
-    example: 'Подробное объяснение модулей',
+    example: 'Я бы описал тестовое описание, но не описал',
   })
   description: string;
 
