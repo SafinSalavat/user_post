@@ -2,6 +2,7 @@ import {
   ConflictException,
   Injectable,
   NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { UserDomain } from './user.domain';
 import {
@@ -71,5 +72,22 @@ export class UserService {
     return {
       message: 'Пароль успешно изменен',
     };
+  }
+
+  async validateUser(
+    email: string,
+    password: string,
+  ): Promise<GetOneUserResponse> {
+    const user = await this.userDomain.findByEmail(email);
+    if (!user) {
+      throw new UnauthorizedException('Неверные учетные данные');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.hashedPassword);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Неверные учетные данные');
+    }
+
+    return GetOneUserResponse.map(user);
   }
 }

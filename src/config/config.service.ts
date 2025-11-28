@@ -46,12 +46,22 @@ export class AppConfigService {
   }
 
   get jwtConfig(): TJWTConfig {
-    const secret = this.configService.get('JWT_SECRET') as string;
-    const expiresIn = this.configService.get('JWT_EXPIRES_IN') as number;
+    const accessSecret = this.configService.get('JWT_ACCESS_SECRET') as string;
+    const accessExpiresIn = this.configService.get(
+      'JWT_ACCESS_EXPIRES_IN',
+    ) as number;
+    const refreshSecret = this.configService.get(
+      'JWT_REFRESH_SECRET',
+    ) as string;
+    const refreshExpiresIn = this.configService.get(
+      'JWT_REFRESH_EXPIRES_IN',
+    ) as number;
 
     return {
-      JWT_EXPIRES_IN: expiresIn,
-      JWT_SECRET: secret,
+      JWT_ACCESS_EXPIRES_IN: accessExpiresIn,
+      JWT_ACCESS_SECRET: accessSecret,
+      JWT_REFRESH_EXPIRES_IN: refreshExpiresIn,
+      JWT_REFRESH_SECRET: refreshSecret,
     };
   }
 }

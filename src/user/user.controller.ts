@@ -19,6 +19,7 @@ import {
   GetOneUserResponse,
 } from './dto/response/user-response.dto';
 import {
+  ApiBearerAuth,
   ApiBody,
   ApiOperation,
   ApiParam,
@@ -33,6 +34,7 @@ export class UserController {
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Создание нового пользователя' })
   @ApiBody({ type: UserCreateRequestDto })
   @ApiResponse({
@@ -45,6 +47,7 @@ export class UserController {
   }
 
   @Get(':id')
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Получить пользователя по идентификатору' })
   @ApiParam({
     name: 'id',
@@ -61,6 +64,7 @@ export class UserController {
   }
 
   @Patch(':id')
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Обновить данные пользователя' })
   @ApiParam({
     name: 'id',
@@ -80,6 +84,7 @@ export class UserController {
   }
 
   @Patch(':id/changePassword')
+  @ApiBearerAuth()
   @ApiOperation({ summary: 'Изменить пароль пользователя' })
   @ApiParam({
     name: 'id',
